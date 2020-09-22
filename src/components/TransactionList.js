@@ -1,13 +1,17 @@
-import React from 'react'
+import React, {useContext/*for global state*/} from 'react';
+import {Transactions  } from './Transactions'
+
+import {GlobalContext /*for global state*/} from '../context/GlobalState'
 
 export const TransactionList = () => {
+  const {transactions}/*deststuturing to only pull out transactions and not whole object*/ = useContext(GlobalContext); //pullling in global state
+
     return (
         <div>
          <h3>History</h3>
       <ul  className="list">
-         <li className="minus">
-          Cash <span>-$400</span><button className="delete-btn">x</button>
-        </li> 
+        {transactions.map(transaction=>( <Transactions transaction={transaction} />
+        ))}
       </ul>    
         </div>
     )
